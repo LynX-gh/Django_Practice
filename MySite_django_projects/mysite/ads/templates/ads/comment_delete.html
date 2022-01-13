@@ -1,0 +1,16 @@
+{% extends "base_menu.html" %}
+
+{% block title %} Confirm Delete {% endblock %}
+
+{% block content %}
+<h1>Delete Comment</h1>
+
+<p>Are you sure you want to delete</p>
+<p>{{ comment.text }}?</p>
+
+<form action="" method="POST">
+  {% csrf_token %}
+  <input type="submit"  class="btn btn-primary" value="Yes, delete.">
+  <a href="{% url 'ads:ad comment delete' comment.ad.id %}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}

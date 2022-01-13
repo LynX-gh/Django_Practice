@@ -1,0 +1,32 @@
+{% extends "base_menu.html" %}
+
+{% block title %} AUTOS {% endblock %}
+
+{% block content %}
+  <h1>Auto List</h1>
+  {% if object_list %}
+  <ul>
+    {% for auto in object_list %}
+      <li>
+          {{ auto.nickname }} ({{ auto.make }})
+          (<a href="{% url 'autos:auto update' auto.id %}">Update</a> |
+          <a href="{% url 'autos:auto delete' auto.id %}">Delete</a>) <br/>
+          {{ auto.comments }} ({{ auto.mileage }} miles)
+      </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>There are no autos in the library.</p>
+  {% endif %}
+  <p>
+    {% if make_count > 0 %}
+      <a href="{% url 'autos:auto create' %}">Add an auto</a>
+    {% else %}
+      Please add a make before you add an auto.
+    {% endif %}
+  </p>
+  <p>
+  <a href="{% url 'autos:make list' %}">View makes</a> ({{ make_count }}) |
+    <a href="{% url 'autos:make create' %}">Add a make</a>
+  </p>
+{% endblock %}
