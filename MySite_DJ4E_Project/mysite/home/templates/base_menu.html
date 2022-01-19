@@ -29,9 +29,11 @@
     </ul>
     <ul class="nav navbar-nav navbar-right">
         {% if user.is_authenticated %}
+        {% if ads in request.get_full_path %}
         <li>
         <a href="{% url 'ads:ad create' %}">Create Ad</a>
         </li>
+        {% endif %}
         <li class="dropdown">
             <a href="#" data-toggle="dropdown" class="dropdown-toggle">
                 <img style="width: 25px;" src="{{ user|gravatar:60 }}"/><b class="caret"></b>

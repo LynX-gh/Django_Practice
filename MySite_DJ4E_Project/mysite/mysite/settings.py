@@ -100,14 +100,12 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'lynx2161$mysite',
-        'USER': 'lynx2161',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'mysite_db',
+        'USER': 'postgres',
         'PASSWORD': 'admin2161',
-        'HOST': 'lynx2161.mysql.pythonanywhere-services.com',
-         'OPTIONS': {
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
-        },
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
