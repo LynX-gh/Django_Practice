@@ -24,8 +24,25 @@ from django.conf import settings
 from django.contrib.auth import views as auth_views
 from django.views.static import serve
 
+# Folders to serve "site" content
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 urlpatterns = [
     # Uncomment the next line to enable the admin:
     path('admin/', admin.site.urls),
     path('', include('snippets.urls')),
+]
+
+# Serve the favicon - Keep for later
+urlpatterns += [
+    path('favicon.ico', serve, {
+            'path': 'favicon.ico',
+            'document_root': os.path.join(BASE_DIR, 'snippets/static'),
+        }
+    ),
+]
+
+# URLs for authentication
+urlpatterns += [
+    path('api-auth/', include('rest_framework.urls')),
 ]
