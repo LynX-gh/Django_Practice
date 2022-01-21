@@ -38,6 +38,9 @@
     <Compile Include="MySite\wsgi.py" />
     <Compile Include="snippets\admin.py" />
     <Compile Include="snippets\apps.py" />
+    <Compile Include="snippets\class_based_views.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="snippets\models.py" />
     <Compile Include="snippets\permissions.py">
       <SubType>Code</SubType>
