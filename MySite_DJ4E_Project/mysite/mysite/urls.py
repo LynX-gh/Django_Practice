@@ -30,12 +30,17 @@ urlpatterns = [
     path('admin/', admin.site.urls),  # Keep
     path('accounts/', include('django.contrib.auth.urls')),  # Keep
     url(r'^oauth/', include('social_django.urls', namespace='social')),  # Keep
-    # Old Apps
+
+    # My Apps
     path('ads/', include('ads.urls', namespace='ads')),
     path('autos/', include('autos.urls', namespace='autos')),
     path('cats/', include('cats.urls', namespace='cats')),
     path('polls/', include('polls.urls')),
-    path('hello/', include('hello.urls'))
+    path('hello/', include('hello.urls')),
+
+    # REST Apps
+    path('api/', include('snippets.urls', namespace='api')),
+    path('api-auth/', include('rest_framework.urls')),
 ]
 
 # Serve the static HTML

@@ -7,7 +7,8 @@ from rest_framework.reverse import reverse
 
 from .permissions import IsOwnerOrReadOnly
 from .models import Snippet
-from .serializers import SnippetSerializer, UserSerializer
+from ads.models import Ad
+from .serializers import SnippetSerializer, UserSerializer, AdSerializer
 
 # Create your views here.
 
@@ -20,11 +21,19 @@ class SnippetViewSet(viewsets.ModelViewSet):
     def highlight(self, request, *args, **kwargs):
         snippet = self.get_object()
         return Response(snippet.highlighted)
-    
+
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
 
 class UserViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    permissions_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAuthenticated]
+
+class AdViewSet(viewsets.ModelViewSet):
+    queryset = Ad.objects.all()
+    serializer_class = AdSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
+
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)

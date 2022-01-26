@@ -6,12 +6,11 @@
 <h1>Ads</h1>
 <div style="float:right">
 <!-- https://www.w3schools.com/howto/howto_css_search_button.asp -->
-<form>
-  <input type="text" placeholder="Search.." name="search"
-  {% if search %} value="{{ search }}" {% endif %}
-  >
-  <button type="submit"><i class="fa fa-search"></i></button>
-<a href="{% url 'ads:index' %}"><i class="fa fa-undo"></i></a>
+<form class="d-flex">
+  <input class="form-control" type="text" name="search" placeholder="Search" aria-label="Search"
+  {% if search %} value="{{ search }}" {% endif %}>
+  <button type="submit" class="btn btn-success mx-2"><i class="fa fa-search"></i></button>
+  <button type="cancel" onclick="location.href='{% url 'ads:index' %}'; return false;" class="btn btn-danger"><i class="fa fa-undo"></i></button>
 </form>
 </div>
 <p>

@@ -40,22 +40,32 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.humanize',
 
+    # Home Page
+    'home.apps.HomeConfig',
+
     # Extensions - installed with pip3 / requirements.txt
     'django_extensions',
     'crispy_forms',
-    'rest_framework',
+    'crispy_bootstrap5',
     'social_django',
     'taggit',
-    'home.apps.HomeConfig',
+    'rest_framework',
+    'taggit_serializer',
+
+    # My Apps
     'hello.apps.HelloConfig',
     'ads.apps.AdsConfig',
     'cats.apps.CatsConfig',
     'autos.apps.AutosConfig',
-    'polls.apps.PollsConfig'
+    'polls.apps.PollsConfig',
+
+    # REST Apps
+    'snippets.apps.ApiConfig',
 ]
 
 # When we get to crispy forms :)
-CRISPY_TEMPLATE_PACK = 'bootstrap3'  # Add
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = 'bootstrap5'  # Add
 
 # When we get to tagging
 TAGGIT_CASE_INSENSITIVE = True
@@ -100,12 +110,14 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'mysite_db',
-        'USER': 'postgres',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'lynx2161$mysite',
+        'USER': 'lynx2161',
         'PASSWORD': 'admin2161',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'HOST': 'lynx2161.mysql.pythonanywhere-services.com',
+         'OPTIONS': {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+        },
     }
 }
 
@@ -150,6 +162,8 @@ STATIC_URL = '/static/'
 # Add the settings below
 
 REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 5,
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.SessionAuthentication',

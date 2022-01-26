@@ -46,7 +46,7 @@
 {% if ad.tags.all %}
 <p>Tags:
   {% for tag in ad.tags.all %}
-  <span style="border:1px grey solid; background-color: LightGreen;">{{ tag }}</span>
+  <span class="badge rounded-pill bg-success">{{ tag }}</span>
   {% endfor %}
 </p>
 {% endif %}
@@ -67,8 +67,7 @@
 </p><br/>
 {% endif %}
 {% for comment in comments %}
-<p> {{ comment.text }}
-({{ comment.updated_at|naturaltime }})
+<p> {{ comment.text }}<br> ({{ comment.updated_at|naturaltime }})
 {% if user == comment.owner %}
 <a href="{% url 'ads:ad comment delete' comment.id %}"><i class="fa fa-trash"></i></a>
 {% endif %}
